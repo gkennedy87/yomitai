@@ -1,4 +1,4 @@
-<form action="" method="POST">
+<form action="{{action('BookController@store')}}" method="POST" accept-charset="UTF-8">
     @csrf
     <div class="form-group">
         <label for="title">Title</label>

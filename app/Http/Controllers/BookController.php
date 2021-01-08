@@ -19,16 +19,6 @@ class BookController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -36,7 +26,21 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Validate the request
+        $this->validate($request,[
+            'title' => 'required',
+            'author' => 'required'
+        ]);
+
+        //Create new book
+        $book = new Book;
+        $book->title = $request->input('title');
+        $book->author = $request->input('author');
+        
+        // Save book to DB
+        $book->save();
+
+        return redirect('books')->with('success','Added Successfully');
     }
 
     /**
