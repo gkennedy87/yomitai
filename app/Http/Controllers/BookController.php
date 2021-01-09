@@ -72,9 +72,19 @@ class BookController extends Controller
      * @param  \App\Models\Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Book $book)
+    public function update(Request $request, $id)
     {
-        //
+        
+        $book = Book::find($id);
+
+        //Update book info
+        $book->title = $request->input('title');
+        $book->author = $request->input('author');
+        
+        // Save new info to DB
+        $book->save();
+
+        return redirect('books')->with('success','Updated Successfully');
     }
 
     /**

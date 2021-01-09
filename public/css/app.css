@@ -16103,3 +16103,7 @@ readers do not read off random characters that represent icons */
 .fa .fa-trash {
   color: white;
 }
+
+table .collapse.in {
+  display: table-row !important;
+}

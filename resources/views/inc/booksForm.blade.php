@@ -1,12 +1,11 @@
-<form action="{{action('BookController@store')}}" method="POST" accept-charset="UTF-8">
-    @csrf
-    <div class="form-group">
-        <label for="title">Title</label>
-        <input type="text" class="form-control" id="title" name="title">
-      </div>
-      <div class="form-group">
-        <label for="author">Password</label>
-        <input type="text" class="form-control" id="author" name="author">
-      </div>
-      <button type="submit" class="btn btn-primary">Add</button>
-</form>
+{!!Form::open(['action' => 'BookController@store', 'method'=>'post', 'accept-charset' => 'UTF-8']) !!}
+  <div class="form-group">
+      {{Form::label('title', 'Title:')}}
+      {{Form::text('title',null, ['class' => 'form-control'])}} 
+  </div>
+  <div class="form-group">
+      {{Form::label('author', 'Author:')}}
+      {{Form::text('author',null, ['class' => 'form-control'])}} 
+  </div>   
+      {{Form::submit('Save',['class'=>'btn btn-primary'])}}
+{!!Form::close() !!}
