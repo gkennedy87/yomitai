@@ -85,6 +85,11 @@ class BookController extends Controller
      */
     public function destroy(Book $book)
     {
-        //
+        if(Book::find($book)) {
+            $book->delete();
+            return redirect('books')->with('succcess','Book Deleted Successfully');
+        } else {
+            return redirect()->back();
+        }
     }
 }

@@ -13,9 +13,12 @@
                         <th scope="row">{{$book->id}}</th>
                         <td>{{$book->title}}</td>
                         <td>{{$book->author}}</td>
-                        <td>
+                        <td class="d-flex gap-1">
                             <Button class="btn btn-secondary">Edit</Button>
-                            <Button class="btn btn-danger"><i class="fas fa-trash"></i></Button>
+                            {!!Form::open(['action' => ['BookController@destroy', $book]])!!}
+                                {{Form::hidden('_method','DELETE')}}
+                                <Button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></Button>
+                            {!!Form::close()!!}
                         </td>
                     </tr>
                 @endforeach
