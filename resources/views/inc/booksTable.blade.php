@@ -8,6 +8,7 @@
                 <th scope="col">Actions</th>
             </tr>
             <tbody>
+              @if($books->isNotEmpty())
                 @foreach ($books as $book)
                     <tr>
                         <th scope="row">{{$book->id}}</th>
@@ -19,13 +20,19 @@
                                     data-target='#editModal'>
                                     Edit
                             </Button>
-                            {!!Form::open(['action' => ['BookController@destroy', $book]])!!}
+                            {!!Form::open(['action' => ['App\Http\Controllers\BookController@destroy', $book]])!!}
                                 {{Form::hidden('_method','DELETE')}}
                                 <Button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></Button>
                             {!!Form::close()!!}
                         </td>
                     </tr>
                 @endforeach
+              @else
+                    <tr>
+                      <td>
+                        <p>No Results Found</p>
+                      </td>
+              @endif
             </tbody>
         </thead>
     </table>
@@ -42,7 +49,7 @@
                 <h2>
                     Edit Book Details
                 </h2>
-              {!!Form::open(['action' => ['BookController@update', $book->id], 'method'=>'put']) !!}
+              {!!Form::open(['action' => ['App\Http\Controllers\BookController@update', $book->id], 'method'=>'put']) !!}
                 <div class="form-group">
                     {{Form::label('title', 'Title:')}}
                     {{Form::text('title',$book->title, ['class' => 'form-control'])}} 

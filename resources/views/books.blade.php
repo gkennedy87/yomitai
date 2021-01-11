@@ -13,6 +13,9 @@
                 </div>
             </div>
         </div>
+        <div class="row d-flex justify-content-end">
+            @include('inc.searchField')
+        </div>
         <div class="row">
             @include('inc.booksTable') 
         </div>

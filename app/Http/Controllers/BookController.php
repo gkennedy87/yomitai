@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use App\Models\Book;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class BookController extends Controller
 {
@@ -17,8 +19,20 @@ class BookController extends Controller
      */
     public function index()
     {
-        $books = Book::all();
-        return view('books') -> with('books',$books);
+            $books = Book::paginate(12);
+            return view('books') -> with('books', $books);
+    }
+
+    public function search(Request $request){
+        // Get Search value from request
+        $search = $request->input('search');
+        // Search in title and author columns for request
+        $books = Book::query()
+                    ->where('title', 'LIKE', "%{$search}%")
+                    ->orWhere('author', 'LIKE', "%{$search}%")
+                    ->get();
+        // return the search view with the results
+        return view('search', ['books' => $books]);
     }
 
     /**
@@ -46,27 +60,7 @@ class BookController extends Controller
         return redirect('books')->with('success','Added Successfully');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Book  $book
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Book $book)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Book  $book
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Book $book)
-    {
-        //
-    }
+    
 
     /**
      * Update the specified resource in storage.
@@ -105,4 +99,6 @@ class BookController extends Controller
             return redirect()->back();
         }
     }
+
+    
 }

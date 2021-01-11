@@ -1,4 +1,4 @@
-{!!Form::open(['action' => 'BookController@store', 'method'=>'post', 'accept-charset' => 'UTF-8']) !!}
+{!!Form::open(['action' => 'App\Http\Controllers\BookController@store', 'method'=>'post', 'accept-charset' => 'UTF-8']) !!}
   <div class="form-group">
       {{Form::label('title', 'Title:')}}
       {{Form::text('title',null, ['class' => 'form-control'])}} 

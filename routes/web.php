@@ -1,6 +1,7 @@
 <?php
-
+use App\Http\Controllers\BookController;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +18,8 @@ Route::get('/', function () {
     return view('index', ['title' => 'Yomitai']);
 });
 
-Route::get('/books', [BookController::class,'index']);
+Route::get('/books', [BookController::class,'index'])->name('index');
+Route::get('/search',[BookController::class,'search'])->name('search');
 Route::resource('books', BookController::class);
 Auth::routes();
 
