@@ -99,6 +99,88 @@ class BookController extends Controller
             return redirect()->back();
         }
     }
+        // Exports Titles and Authors as CSV
+    public function exportCSV(Request $request) {
+        $name = $request->value;
+        $headers = [
+            'Cache-Control'       => 'must-revalidate, post-check=0, pre-check=0'
+        ,   'Content-type'        => 'text/csv'
+        ,   'Content-Disposition' => 'attachment; filename=yomitaiData.csv'
+        ,   'Expires'             => '0'
+        ,   'Pragma'              => 'public'
+    ];
+        //Add Headers to each column in the CSV
+        $list = Book::all()->toArray();
+        array_unshift($list,array_keys($list[0]));
+        
+        $callback = function() use ($list) {
+            $FH = fopen('php://output','w');
+            foreach($list as $row) {
+                fputcsv($FH, $row);
+            }
+            fclose($FH);
+        };
+
+        return response()->stream($callback, 200, $headers);
+        
+    }
+        // Export Authors as CSV
+
+    public function exportAuthorCSV(Request $request) {
+        $name = $request->value;
+        $headers = [
+            'Cache-Control'       => 'must-revalidate, post-check=0, pre-check=0'
+        ,   'Content-type'        => 'text/csv'
+        ,   'Content-Disposition' => 'attachment; filename=AuthorData.csv'
+        ,   'Expires'             => '0'
+        ,   'Pragma'              => 'public'
+    ];
+        //Add Headers to each column in the CSV
+        $query = Book::query()
+                    ->select('author')
+                    ->get();
+        $list = $query->toArray(); 
+        array_unshift($list,array_keys($list[0]));
+        
+        $callback = function() use ($list) {
+            $FH = fopen('php://output','w');
+            foreach($list as $row) {
+                fputcsv($FH, $row);
+            }
+            fclose($FH);
+        };
+
+        return response()->stream($callback, 200, $headers);
+        
+    }
+    // Export titles as CSV
+    public function exportTitleCSV(Request $request) {
+        $name = $request->value;
+        $headers = [
+            'Cache-Control'       => 'must-revalidate, post-check=0, pre-check=0'
+        ,   'Content-type'        => 'text/csv'
+        ,   'Content-Disposition' => 'attachment; filename=TitlesData.csv'
+        ,   'Expires'             => '0'
+        ,   'Pragma'              => 'public'
+    ];
+        //Add Headers to each column in the CSV
+        $query = Book::query()
+                    ->select('title')
+                    ->get();
+        $list = $query->toArray(); 
+        array_unshift($list,array_keys($list[0]));
+        
+        $callback = function() use ($list) {
+            $FH = fopen('php://output','w');
+            foreach($list as $row) {
+                fputcsv($FH, $row);
+            }
+            fclose($FH);
+        };
+
+        return response()->stream($callback, 200, $headers);
+        
+    }
 
     
 }

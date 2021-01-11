@@ -17,25 +17,25 @@
             <div class="col-4 align-bottom">
                 <div class="d-flex gap-1">
                     <div class="dropdown">
-                    <button class="btn btn-outline-secondary btn-sm dropdown-toggle " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Download CSV
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                      <a class="dropdown-item" href="#">Titles</a>
-                      <a class="dropdown-item" href="#">Authors</a>
-                      <a class="dropdown-item" href="#">Titles & Authors</a>
-                    </div>
+                        <button class="btn btn-outline-secondary btn-sm dropdown-toggle " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Download CSV
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="{{route('exportTitles')}}">Titles</a>
+                        <a class="dropdown-item" href="{{route('exportAuthors')}}">Authors</a>
+                        <a class="dropdown-item" href="{{route('exportAll')}}">Titles & Authors</a>
+                        </div>
                   </div>
                   <div class="dropdown">
-                    <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Download XML
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                      <a class="dropdown-item" href="#">Titles</a>
-                      <a class="dropdown-item" href="#">Authors</a>
-                      <a class="dropdown-item" href="#">Titles & Authors</a>
+                        <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Download XML
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#">Titles</a>
+                        <a class="dropdown-item" href="#">Authors</a>
+                        <a class="dropdown-item" href="#">Titles & Authors</a>
+                        </div>
                     </div>
-                  </div>
                 </div>
                 
 

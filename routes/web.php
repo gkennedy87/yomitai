@@ -20,6 +20,10 @@ Route::get('/', function () {
 
 Route::get('/books', [BookController::class,'index'])->name('index');
 Route::get('/search',[BookController::class,'search'])->name('search');
+Route::get('/exportCsv', [BookController::class,'exportCSV'])->name('exportAll');
+Route::get('/exportAuthorCsv', [BookController::class,'exportAuthorCSV'])->name('exportAuthors');
+Route::get('/exportTitleCsv', [BookController::class,'exportTitleCSV'])->name('exportTitles');
+
 Route::resource('books', BookController::class);
 Auth::routes();
 
