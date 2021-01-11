@@ -14,8 +14,12 @@
         </div>
     </div>
     <div class="row d-flex justify-content-end">
-        <a href="{{route('index')}}">Back</a>
-        @include('inc.searchField')
+        <div class="col-3">
+            <a href="/books">Back</a>
+        </div>
+        <div class="col-9">
+            @include('inc.searchField')
+        </div>
     </div>
     <div class="row">
         @include('inc.booksTable') 
