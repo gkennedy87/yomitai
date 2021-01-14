@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Book;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
+
 
 class BookController extends Controller
 {
@@ -100,8 +103,8 @@ class BookController extends Controller
         }
     }
         // Exports Titles and Authors as CSV
-    public function exportCSV(Request $request) {
-        $name = $request->value;
+    public function exportCSV() {
+    
         $headers = [
             'Cache-Control'       => 'must-revalidate, post-check=0, pre-check=0'
         ,   'Content-type'        => 'text/csv'
@@ -126,8 +129,8 @@ class BookController extends Controller
     }
         // Export Authors as CSV
 
-    public function exportAuthorCSV(Request $request) {
-        $name = $request->value;
+    public function exportAuthorCSV() {
+
         $headers = [
             'Cache-Control'       => 'must-revalidate, post-check=0, pre-check=0'
         ,   'Content-type'        => 'text/csv'
@@ -154,8 +157,7 @@ class BookController extends Controller
         
     }
     // Export titles as CSV
-    public function exportTitleCSV(Request $request) {
-        $name = $request->value;
+    public function exportTitleCSV() {
         $headers = [
             'Cache-Control'       => 'must-revalidate, post-check=0, pre-check=0'
         ,   'Content-type'        => 'text/csv'
@@ -181,6 +183,26 @@ class BookController extends Controller
         return response()->stream($callback, 200, $headers);
         
     }
+
+    // XML Controller Actions 
+    public function saveXML() {
+       $books = Book::all();
+
+       return response()->xml(['books' => $books->toArray()]);
+
+    }
+    public function saveAuthorXML() {
+        $books = Book::query()->select('author')->get();
+ 
+        return response()->xml(['books' => $books->toArray()]);
+ 
+     }
+     public function saveTitleXML() {
+        $books = Book::query()->select('title')->get();
+ 
+        return response()->xml(['books' => $books->toArray()]);
+ 
+     }
 
     
 }

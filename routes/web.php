@@ -23,6 +23,10 @@ Route::get('/search',[BookController::class,'search'])->name('search');
 Route::get('/exportCsv', [BookController::class,'exportCSV'])->name('exportAll');
 Route::get('/exportAuthorCsv', [BookController::class,'exportAuthorCSV'])->name('exportAuthors');
 Route::get('/exportTitleCsv', [BookController::class,'exportTitleCSV'])->name('exportTitles');
+Route::get('/saveXml', [BookController::class, 'saveXML'])->name('saveXml');
+Route::get('/saveAuthorXml', [BookController::class, 'saveAuthorXML'])->name('saveAuthorXml');
+Route::get('/saveTitleXml', [BookController::class, 'saveTitleXML'])->name('saveTitleXml');
+
 
 Route::resource('books', BookController::class);
 Auth::routes();

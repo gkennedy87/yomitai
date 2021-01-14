@@ -31,9 +31,9 @@
                         Download XML
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Titles</a>
-                        <a class="dropdown-item" href="#">Authors</a>
-                        <a class="dropdown-item" href="#">Titles & Authors</a>
+                            <a class="dropdown-item" href="{{route('saveTitleXml')}}">Titles</a>
+                            <a class="dropdown-item" href="{{route('saveAuthorXml')}}">Authors</a>
+                            <a class="dropdown-item" href="{{route('saveXml')}}">Titles & Authors</a>
                         </div>
                     </div>
                 </div>
