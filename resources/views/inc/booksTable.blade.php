@@ -2,9 +2,9 @@
     <table class="table" id="sortTable">
         <thead>
             <tr>
-                <th scope="col">#</th>
-                <th scope="col">Title</th>
-                <th scope="col">Author</th>
+                <th scope="col">@sortablelink('id','id')</th>
+                <th scope="col">@sortablelink('title','Title')</th>
+                <th scope="col">@sortablelink('author','Author')</th>
                 <th scope="col">Actions</th>
             </tr>
             <tbody>
@@ -36,6 +36,8 @@
             </tbody>
         </thead>
     </table>
+
+    {!! $books->appends(\Request::except('page'))->render() !!}
     <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
