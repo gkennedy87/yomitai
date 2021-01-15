@@ -187,20 +187,23 @@ class BookController extends Controller
     // XML Controller Actions 
     public function saveXML() {
        $books = Book::all();
+        $headers = ['Content-Type'=> 'text/xml', 'Content-Disposition'=>'attachment; filename="books.xml"'];
 
-       return response()->xml(['books' => $books->toArray()]);
+       return response()->xml(['books' => $books->toArray()],$status = 200, $headers);
 
     }
     public function saveAuthorXML() {
         $books = Book::query()->select('author')->get();
- 
-        return response()->xml(['books' => $books->toArray()]);
+        $headers = ['Content-Type'=> 'text/xml', 'Content-Disposition'=>'attachment; filename="authors.xml"'];
+
+        return response()->xml(['books' => $books->toArray()],$status = 200, $headers);
  
      }
      public function saveTitleXML() {
         $books = Book::query()->select('title')->get();
- 
-        return response()->xml(['books' => $books->toArray()]);
+        $headers = ['Content-Type'=> 'text/xml', 'Content-Disposition'=>'attachment; filename="titles.xml"'];
+
+       return response()->xml(['books' => $books->toArray()],$status = 200, $headers);
  
      }
 
