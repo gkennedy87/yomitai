@@ -12,7 +12,6 @@ class Book extends Model
     use Sortable;
     use HasFactory;
   
-    protected $guarded = [];
-
     public $sortable = ['id','title','author'];
+    protected $guarded = [];
 }
